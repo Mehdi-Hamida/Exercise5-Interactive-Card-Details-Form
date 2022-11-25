@@ -5,36 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Interactive card details form</title>
 </head>
 <body>
 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
+  <section class="background-gradient">
+    <!-- Bank Card Front Side -->
+    <div class="credit-card-front-container">
+      <img class="credit-card-front" src="./images/bg-card-front.png" alt="Front of the credit card" title="Front of the credit card" />
+      <!-- Bank Card Front Content -->
+      <img class="card-logo" src="./images/card-logo.svg" alt="Credit card logo" title="Credit card logo" />
+      <div id="dynamic-card-number" class="credit-card-texts">1234 5678 9123 0000</div>
+      <div class="flex-spaced-row">
+        <div id="dynamic-cardholder-name" class="credit-card-texts">Jane Appleseed</div>
+        <div class="flex-centered-row">
+          <div id="dynamic-expiration-month" class="credit-card-texts">10</div>
+          <div>/</div>
+          <div id="dynamic-expiration-year" class="credit-card-texts">23</div>
+        </div>
+      </div>
+    </div>
+    <!-- Bank Card Back Side -->
+    <div class="credit-card-back-container">
+      <img class="credit-card-back" src="./images/bg-card-back.png" alt="Back of the credit card" title="Back of the credit card" />
+      <div id="dynamic-cvc" class="credit-card-texts">000</div>
+    </div>
+  </section>
+  <!-- Form part -->
+  <main class="flex-center">
 
-  000
+    <form id="credit-card-form" name="credit-card-form" action="#" method="get">
 
-  Cardholder Name
-  e.g. Jane Appleseed
+      <div class="name-field">
+        <label for="name">Cardholder Name</label>
+        <input name="name" id="name" type="text" placeholder="e.g. Jane Appleseed" pattern="([a-zA-Z]+\s){1,}([a-zA-Z]+)" required />
+        <p class="hidden">Can't be blank</p>
+        <p class="wrong-format-text hidden">Wrong format, numbers only</p>
+      </div>
+      
+      <div class="card-number-field">
+        <label for="card-number-field">Card Number</label>
+        <input name="card-number-field" id="card-number-field"  type="text" inputmode="numeric" autocomplete="cc-number" placeholder="e.g. 1234 5678 9123 0000" required />
+        <p class="hidden">Can't be blank</p>
+        <p class="wrong-format-text hidden">Wrong format, numbers only</p>
+      </div>
+      <!-- inputmode="numeric" is to help the browser, specifically on mobile what keyboard to display, here a smartphone will display a numeric-only keyboard -->
+      
+      <div class="flex-row">
+        <fieldset>
+          <legend>Exp. date (MM/YY)</legend>
+          <div class="flex-column">
+          <label for="month" hidden>MM</label>
+          <input id="month" name="month" type="number" maxlength="2" inputmode="numeric" placeholder="MM" required />
+          <p id="card-date-blank" class="hidden">Can't be blank</p>
+          <p id="card-date-letters" class="hidden">Wrong format, numbers only</p>
+          </div>
+          <div class="flex-column">
+          <label for="year" hidden>YY</label>
+          <input id="year" name="year" type="number" maxlength="2" inputmode="numeric" placeholder="YY" required />
+          </div>
+        </fieldset>
 
-  Card Number
-  e.g. 1234 5678 9123 0000
-
-  Exp. Date (MM/YY)
-  MM
-  YY
-
-  CVC
-  e.g. 123
-
-  Confirm
-
+        <div class="card-verification-code">
+          <label for="card-verification-code">CVC</label>
+          <input name="card-verification-code" id="card-verification-code" type="text" inputmode="numeric" minlength="3" maxlength="3" pattern="[0-9]{3}" placeholder="e.g. 123" required />
+          <p class="hidden">Can't be blank</p>
+          <p class="wrong-format-text hidden">Wrong format, numbers only</p>
+        </div>
+      </div>
+      <button id="submit-button" type="submit">Confirm</button>
+    </form>
   <!-- Completed state start -->
-
-  Thank you!
-  We've added your card details
-  Continue
-  
+  <div class="completed-state hidden">
+    <img src="./images/icon-complete.svg" alt="Confirmation icon" title="Confirmation icon" />
+    <h1>Thank you!</h1>
+    <p>We've added your card details</p>
+    <button id="confirmation-page-button" type="submit">Continue</button>
+    <!-- onsubmit="formRefresh()" -->
+  </div>
+  <!-- Completed state end -->
+  </main>
+  <script src="./main.js"></script>
 </body>
 </html>

@@ -1,0 +1,474 @@
+:root
+{
+    --button-background: #21092f;
+    --titles: #8e8593;
+    --borders-and-placeholders: #dedddf;
+    --active-input-border: to right, #6448fe, #600594;
+    --input-errors: #ff5252;
+    --white: #fff;
+    --font: 'Space Grotesk', sans-serif;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: var(--font);
+    display: flex;
+}
+
+.flex-center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- Background Gradient Image ----- */
+.background-gradient
+{
+    position: relative;
+    height: 100vh;
+    width: 30%;
+    background: url(./images/bg-main-desktop.png) no-repeat center;
+    background-size: cover;
+}
+
+/* ----- Credit Card Images ----- */
+.credit-card-front-container,
+.credit-card-back-container
+{
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 5px 30px 50px rgba(47, 47, 47, 0.2);
+    width: 447px;
+    height: 245px;
+    color: var(--white);
+    letter-spacing: 2px;
+}
+
+.credit-card-front-container
+{
+    top: 20%;
+    left: 30%;
+}
+
+.credit-card-back-container
+{
+    top: 23%;
+    left: 50%;
+}
+
+/* ----- Credit Card Front Informations ----- */
+img.card-logo
+{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+#dynamic-card-number
+{
+    position: absolute;
+    font-size: 2rem;
+    top: 55%;
+    left: 30px;
+    font-weight: 400;
+}
+
+.credit-card-front-container .flex-spaced-row
+{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    width: calc(100% - 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.credit-card-front-container .flex-spaced-row .flex-centered-row
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- Credit Card Back Informations ----- */
+#dynamic-cvc
+{
+    position: absolute;
+    top: 111px;
+    right: 60px;
+}
+
+/* ----- Form Part ----- */
+main
+{
+    width: 100%;
+}
+
+main form
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 25.5%;
+}
+
+label,
+fieldset legend
+{
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    padding-bottom: 2px;
+    font-size: 0.8rem;
+}
+
+fieldset legend,
+.card-verification-code label
+{
+    padding-bottom: 5px;
+}
+
+button
+{
+    background: var(--button-background);
+    padding: 14px 0;
+    border: 3px solid transparent;
+    font-family: var(--font);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 7.5px;
+    transition: all ease 0.4s;
+}
+
+button:hover,
+button:focus,
+button:active
+{
+    cursor: pointer;
+    background: transparent;
+    border: 3px solid var(--button-background);
+    color: var(--button-background);
+}
+
+/* Base Input Style */
+main form input
+{
+    font-family: var(--font);
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--borders-and-placeholders);
+    margin-bottom: 8px;
+    transition: all ease 0.4s;
+}
+
+main form input:hover,
+main form input:focus-visible
+{
+    outline: transparent;
+    border: solid 1px transparent;
+    border-radius: 10px;
+    background-image: linear-gradient(white, white), linear-gradient(var(--active-input-border));
+    background-clip: padding-box, border-box;
+}
+
+main form input::placeholder
+{
+    color: var(--borders-and-placeholders);
+    font-weight: 500;
+}
+
+/* Error in input */
+.hidden
+{
+    display: none;
+    margin: 0;
+}
+
+main form p.error
+{
+    margin: 0;
+    display: inline-block;
+    color: var(--input-errors);
+}
+
+main form input.error
+{
+    border: 1px solid var(--input-errors);
+}
+
+/* Fields */
+.name-field,
+.card-number-field
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+main form .flex-row
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    column-gap: 5px;
+}
+
+/* Name field */
+.name-field input
+{
+    text-transform: capitalize; /* Formats the user's name entry */
+}
+
+/* Fieldset */
+
+/* Hide arrows on input type="number" */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+main form .flex-row fieldset
+{
+    display: flex;
+    padding: 0;
+    border: none;
+    width: 50%;
+}
+
+main form fieldset .flex-column
+{
+    display: flex;
+    flex-direction: column;
+}
+
+main form .flex-row fieldset input
+{
+    width: 53%;
+    margin-bottom: 0;
+}
+
+main form fieldset .flex-column #card-date-blank
+{
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+/* CVC field */
+main form .flex-row .card-verification-code
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+main form .flex-row .card-verification-code input
+{
+    margin-bottom: 0;
+}
+
+main form .flex-row .card-verification-code p.hidden
+{
+    margin-top: 8px;
+}
+
+/* Completed state */
+.completed-state.hidden
+{
+    display: none;
+}
+
+.completed-state
+{
+    display: block;
+    min-width: 25%;
+    text-align: center;
+}
+
+.completed-state img
+{
+    margin-bottom: 30px;
+}
+
+.completed-state h1
+{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0;
+}
+
+.completed-state p
+{
+    font-size: 1.05rem;
+    color: var(--titles);
+    margin: 0;
+}
+
+.completed-state button
+{
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* ----- MEDIA QUERIES ----- */
+
+/* PC < 1660px */
+@media (max-width: 1660px)
+{
+    main.flex-center
+    {
+        justify-content: end;
+        margin-right: 10%;
+    }
+
+    main form
+    {
+        max-width: 55%;
+    }
+}
+
+/* ----- TABLET ----- */
+@media (max-width: 1250px)
+{
+    body
+    {
+        flex-direction: column;
+    }
+
+    .background-gradient
+    {
+        height: 33vh;
+        width: 100%;
+        background: url(./images/bg-main-mobile.png) no-repeat center;
+        background-size: cover;
+    }
+
+    .credit-card-front-container
+    {
+        top: 55%;
+        left: 10%;
+        z-index: 1;
+    }
+
+    .credit-card-back-container
+    {
+        position: absolute;
+        top: 10%;
+        left: unset;
+        right: 10%;
+        z-index: 0;
+    }
+
+    main.flex-center
+    {
+        justify-content: center;
+        margin-top: 5vh;
+        height: 62vh;
+    }
+
+    main form
+    {
+        max-width: 60%;
+    }
+}
+
+/* ----- MOBILE ----- */
+
+/* iPhone 6/7/8/+ and bigger */
+@media (max-width: 550px)
+{
+    /* 70% of the size displayed on PC */
+    .credit-card-front-container,
+    .credit-card-back-container
+    {
+        height: 171.5px;
+        width: 312.9px;
+    }
+
+    .credit-card-front-container img,
+    .credit-card-back-container img
+    {
+        max-width: 100%;
+    }
+
+    .credit-card-front-container
+    {
+        top: 52.5%;
+        left: 4%;
+    }
+
+    /* Front Credit Card - 70% of the PC sizes */
+    .credit-card-front-container img.card-logo
+    {
+        top: 21px;
+        left: 21px;
+        max-width: 58.8px;
+    }
+
+    .credit-card-front-container #dynamic-card-number
+    {
+        left: 21px;
+        font-size: 1.25rem;
+    }
+
+    .credit-card-front-container .flex-spaced-row
+    {
+        width: calc(100% - 42px);
+        bottom: 21px;
+        left: 21px;
+        font-size: 0.65rem;
+    }
+
+
+    /* Back Credit Card - 70% of the PC sizes */
+    .credit-card-back-container
+    {
+        top: 12.5%;
+        right: 4%;
+    }
+
+    #dynamic-cvc
+    {
+        top: 77.7px;
+        right: 42px;
+        font-size: 0.65rem;
+    }
+
+    /* Form part */
+    main.flex-center
+    {
+        margin-top: 8vh;
+        height: 59vh;
+    }
+
+    main form
+    {
+        max-width: 90%;
+        row-gap: 10px;
+    }
+}
+
+/* iPhone SE */
+@media (max-width: 375px)
+{
+    
+}
