@@ -41,6 +41,51 @@ form.addEventListener("input", function writeOnCreditCard()
     creditCardTexts[4].innerHTML = allInputs[4].value; //CVC field
 });
 
+/* --------- CHECKS PATTERN OF NAME FIELD --------- */
+// function checkPattern()
+// const nameFieldRegex = nameField.getAttribute("pattern");
+
+allInputs[0].addEventListener("change", function checkPattern()
+{
+    const nameField = document.querySelector("input#name");
+    const nameFieldRegex = new RegExp("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$");
+
+    if (allInputs[0].value !== "" && nameFieldRegex.test(nameField.value) === false)
+    {
+        wrongFormatText[0].classList.add('error');
+    }
+
+    if (nameFieldRegex.test(nameField.value) === true)
+    {
+        console.log("jsp");
+        wrongFormatText[0].classList.remove('error');
+        return;
+    }
+
+    else if (nameFieldRegex.test(nameField.value) === false)
+    {
+        console.log("Marche pas");
+        allInputs[0].classList.add('error');
+        allInputs[0].nextElementSibling.classList.remove('error');
+        wrongFormatText[0].classList.add('error');
+    }
+});
+
+// allInputs[0].addEventListener("input", checkPattern()
+// {
+//     // if (nameFieldRegex.test(nameField.value))
+    
+// });
+
+
+// document.querySelectorAll('input[type="number"]').forEach(input =>
+//     {
+//         input.oninput = () =>
+//         {
+//             if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+//         };
+//     });
+
 /* ---------- CHECKS EMPTY FIELDS & ADDS OR REMOVES ERROR CLASS ----------- */
 document.addEventListener("change", function checkBlankFields()
 {
@@ -48,16 +93,17 @@ document.addEventListener("change", function checkBlankFields()
     {
         if (allInputs[i].value !== "") //Removing classes first because once some fields are full, if i delete their content, the function doesn't makes the blank field's check
         {
-            allInputs[0].classList.remove('error');
+            // allInputs[0].classList.remove('error');
             allInputs[0].nextElementSibling.classList.remove('error');
-            allInputs[1].classList.remove('error');
+            wrongFormatText[0].classList.remove('error');
+            // allInputs[1].classList.remove('error'); //Empêche de laisser la classe error sur le champ card number lors de la fonction suivante, puisque si il contient une lettre (oniput) mais qu'il est pas vide (change), ca enlève la classe dès qu'on change de champ malgré la présence de lettre
             allInputs[1].nextElementSibling.classList.remove('error');
             allInputs[2].classList.remove('error');
             cardDateBlankText.classList.remove('error');
             allInputs[3].classList.remove('error');
             allInputs[4].classList.remove('error');
             allInputs[4].nextElementSibling.classList.remove('error');
-            validity = true;
+            // validity = true;
         }
         
         //Name
@@ -104,9 +150,9 @@ document.addEventListener("change", function checkBlankFields()
 });
 
 /* --------- FUNCTION THAT VERIFIES PRESENCE OF LETTERS IN NUMERIC-ONLY FIELDS --------- */
-let letterRegex = /[a-zA-Z]/i;
+const letterRegex = /[a-zA-Z]/i;
 
-form.addEventListener("input", function lookForLetters()
+form.addEventListener("change", function lookForLetters()
 {
     if (letterRegex.test(allInputs[1].value))
     {
@@ -215,7 +261,8 @@ form.addEventListener("change", function checkMonthValidity()
 });
 
 /* --------- FUNCTION THAT GETS HTML MAXLENGHT AND APPLIES IT TO INPUT TYPE="NUMBER"  --------- */
-document.querySelectorAll('input[type="number"]').forEach(input =>{
+document.querySelectorAll('input[type="number"]').forEach(input =>
+{
     input.oninput = () =>
     {
         if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);

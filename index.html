@@ -41,7 +41,8 @@
 
       <div class="name-field">
         <label for="name">Cardholder Name</label>
-        <input name="name" id="name" type="text" placeholder="e.g. Jane Appleseed" pattern="([a-zA-Z]+\s){1,}([a-zA-Z]+)" required />
+        <input name="name" id="name" type="text" placeholder="e.g. Jane Appleseed" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required />
+        <!-- ([a-zA-Z]+\s){1,}([a-zA-Z]+) -->
         <p class="hidden">Can't be blank</p>
         <p class="wrong-format-text hidden">Wrong format, numbers only</p>
       </div>
